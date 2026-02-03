@@ -90,14 +90,16 @@
           config.videoConstraints,
           config,
           (decodedText) => {
-            // YOUR SCAN LOGIC HERE (same as before)
-            console.log('✅ SCANNED:', decodedText);
-            result.innerHTML = `✅ QR SCANNED: ${decodedText.substring(0, 50)}...`;
-            html5QrCode.stop().then(() => {
-              setTimeout(startScanning, 2000); // Auto restart
-            });
-          },
-          () => {} // Silent fail
+  console.log('✅ SCANNED:', decodedText);
+  result.innerHTML = `✅ QR SCANNED:<br><strong>${decodedText}</strong>`;
+
+  html5QrCode.stop();
+  isScanning = false;
+
+  document.getElementById('startScan').classList.remove('hidden');
+  document.getElementById('stopScan').classList.add('hidden');
+}
+ 
         );
         
         isScanning = true;
@@ -121,3 +123,4 @@
   </script>
 </body>
 </html>
+
